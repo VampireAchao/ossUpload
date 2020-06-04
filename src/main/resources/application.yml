@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    alicloud:
+      access-key: 改成你的
+      secret-key: 改成你的
+      oss:
+        endpoint: 改成你的
+        bucket: 改成你的
+server:
+  port: 52014

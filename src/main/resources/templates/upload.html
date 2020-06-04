@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>upload</title>
+    <script type="application/javascript" th:src="@{/js/upload.js}"></script>
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<input type="file" id="uploadFile" multiple="multiple">
+<script>
+    var firstShowImgs = true; //是否第一次调用setShowFiles()这个函数
+    // uploadFile input 框回调拿到的file对象
+
+    $('#uploadFile').change(function (e) {
+        // console.log(e.target.files);
+        var uploadFile=e.target.files;
+        var files=[];
+        for(var i=0;i<uploadFile.length;i++){ //循环push包装一下file对象
+            files.push({
+                returnShow: false, //当前图片是否上传完成
+                url: '', //url 地址
+                file: uploadFile[i], //file 对象
+                isDel:false //是否删除
+            })
+        }
+        console.log(files);
+        setShowFiles(0,files);
+    });
+</script>
+</body>
+</html>
