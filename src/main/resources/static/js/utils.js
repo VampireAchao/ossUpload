@@ -11,15 +11,22 @@ const utils = {
     return `.${filesuffix}`
   },
   getfileName(fileName) { //获取文件名(不要后缀)
-    var first = fileName.lastIndexOf(".");//取到文件名开始到最后一个点的长度
-    var filesuffix = fileName.substring(0, first);//截取获得文件名
-    return `${filesuffix.replace(/\s/g, "")}`
+    var first = fileName.lastIndexOf("."); //取到文件名开始到最后一个点的长度
+    var filesuffix = fileName.substring(0, first); //截取获得文件名
+    return `${filesuffix.replace(/\^|\*|\?|\!|\/|\\|\$|\#|\&|\||\'|\"|\,|\[|\]|\{|\}|\(|\)|\-|\+|\=|\%|\s|\。|\<|\>/g, "")}`
   },
   getFileUrlName(fileName) { //获取文件路径名称
-    var first = fileName.lastIndexOf("/");//取到文件名开始到最后一个/的长度
-    var namelength = fileName.length;//取到文件名长度
-    var filesuffix = fileName.substring(first + 1, namelength);//截取获得文件名
-    return `${filesuffix}`
+    var first = fileName.lastIndexOf("/"); //取到文件名开始到最后一个/的长度
+    var namelength = fileName.length; //取到文件名长度
+    fileName = fileName.substring(first + 1, namelength); //截取获得文件名
+    first = fileName.lastIndexOf("."); //取到文件名开始到最后一个点的长度
+    fileName = fileName.substring(0, first);
+    first = fileName.lastIndexOf("."); //取到文件名开始到最后一个点的长度
+    fileName = fileName.substring(0, first);
+    namelength = fileName.length;
+    fileName = fileName.substring(0, namelength - 37);
+
+    return `${fileName}`
   },
   getObjectURL(file) {  //返回文件本地路径
     var url = null;
